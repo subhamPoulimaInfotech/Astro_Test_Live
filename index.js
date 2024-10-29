@@ -21,6 +21,10 @@ let ffmpegProcess;
 const streamUrl = 'rtmp://3.110.92.32:1935/live';
 const streamKey = 'da373f55-034e-4ac1-8d1d-c5ac03190942'; // Update this key as needed
 
+app.get('/', (req, res) => {
+    res.json({message: "deployed"})
+})
+
 app.get('/start-stream', (req, res) => {
     const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path if necessary
 
