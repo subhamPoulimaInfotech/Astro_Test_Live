@@ -21,7 +21,7 @@ let ffmpegProcess;
 const streamUrl = 'rtmp://3.110.92.32:1935/live';
 const streamKey = 'da373f55-034e-4ac1-8d1d-c5ac03190942'; // Update this key as needed
 
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
     res.json({message: "deployed"})
 })
 
