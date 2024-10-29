@@ -26,7 +26,8 @@ app.get('/test', (req, res) => {
 })
 
 app.get('/start-stream', (req, res) => {
-    const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path if necessary
+    // const ffmpegPath = 'C:\\ffmpeg\\bin\\ffmpeg.exe'; // Adjust this path if necessary
+    const ffmpegPath = '/usr/bin/ffmpeg'; // Adjust this path if necessary
 
     if (!ffmpegProcess) {
         ffmpegProcess = spawn(ffmpegPath, [
