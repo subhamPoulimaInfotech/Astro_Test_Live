@@ -2,15 +2,23 @@ import cors from 'cors'
 import express from 'express';
 import { spawn } from 'child_process'
 import { nms } from './media_server.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json()); 
 nms.run();
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 let ffmpegProcess;
 
-const streamUrl = 'rtmp://localhost:1935/live';
+const streamUrl = 'rtmp://3.110.92.32:1935/live';
 const streamKey = 'da373f55-034e-4ac1-8d1d-c5ac03190942'; // Update this key as needed
 
 app.get('/start-stream', (req, res) => {
@@ -59,6 +67,12 @@ app.get('/stop-stream', (req, res) => {
     }
 });
 
+// Endpoint to render the HTML viewer page
+app.get('/view-stream', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+
 app.listen(3000, () => {
-    console.log('Live streaming API is running on http://localhost:3000');
+    console.log('Live streaming API is running on http://3.110.92.32:3000');
 });
